@@ -106,7 +106,7 @@ class Ui_MainWindow(object):
         self.speed_btn.setObjectName("cmd_btn_3")
 
         self.temperature = QtWidgets.QLabel(self.centralwidget)
-        self.temperature.setGeometry(QtCore.QRect(90, 50, 121, 51))
+        self.temperature.setGeometry(QtCore.QRect(100, 50, 50, 51))
         font = QtGui.QFont()
         font.setFamily("Berlin Sans FB Demi")
         font.setPointSize(16)
@@ -118,7 +118,7 @@ class Ui_MainWindow(object):
                                        "border-radius:0px;")
         self.temperature.setObjectName("temperature")
         self.temp_image = QtWidgets.QLabel(self.centralwidget)
-        self.temp_image.setGeometry(QtCore.QRect(220, 52, 50, 50))
+        self.temp_image.setGeometry(QtCore.QRect(150, 52, 50, 50))
         self.temp_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);")
         self.temp_image.setText("")
 
@@ -128,7 +128,7 @@ class Ui_MainWindow(object):
 
         self.temp_image.setObjectName("temp_image")
         self.weather_stat_image = QtWidgets.QLabel(self.centralwidget)
-        self.weather_stat_image.setGeometry(QtCore.QRect(380, 70, 151, 141))
+        self.weather_stat_image.setGeometry(QtCore.QRect(530, 40, 151, 141))
         self.weather_stat_image.setText("")
         self.weather_stat_image.setObjectName("weather_stat_image")
 
@@ -138,6 +138,46 @@ class Ui_MainWindow(object):
                                         "border-style: solid;\n"
                                         "border-width:0px;")
         self.layout_weather_bg.setObjectName("listWidget")
+
+        self.wind_image = QtWidgets.QLabel(self.centralwidget)
+        self.wind_image.setGeometry(QtCore.QRect(100, 100, 80, 50))
+        self.wind_image.setText("")
+        self.wind_image.setObjectName("weather_stat_image")
+        self.wind_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
+                                             "border-style: solid;\n"
+                                             "border-width:0px;")
+        px = QtGui.QPixmap('images/wind.png').scaled(75, 50)
+        self.wind_image.setPixmap(px)
+
+        self.wind_scale = QtWidgets.QLabel(self.centralwidget)
+        self.wind_scale.setGeometry(QtCore.QRect(180, 100, 130, 50))
+        self.wind_scale.setText("")
+        self.wind_scale.setObjectName("weather_stat_image")
+        self.wind_scale.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
+                                      "border-style: solid;\n"
+                                      "color:rgba(150, 230, 255, 1);\n"
+                                      "border-width:0px;")
+        self.wind_scale.setFont(font)
+
+        self.humid_image = QtWidgets.QLabel(self.centralwidget)
+        self.humid_image.setGeometry(QtCore.QRect(155, 170, 80, 50))
+        self.humid_image.setText("")
+        self.humid_image.setObjectName("weather_stat_image")
+        self.humid_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
+                                      "border-style: solid;\n"
+                                      "border-width:0px;")
+        px = QtGui.QPixmap('images/drop.png').scaled(50, 70)
+        self.humid_image.setPixmap(px)
+
+        self.humid_scale = QtWidgets.QLabel(self.centralwidget)
+        self.humid_scale.setGeometry(QtCore.QRect(100, 170, 60, 50))
+        self.humid_scale.setText("")
+        self.humid_scale.setObjectName("weather_stat_image")
+        self.humid_scale.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
+                                      "border-style: solid;\n"
+                                      "color:rgba(19, 87, 255, 1);\n"
+                                      "border-width:0px;")
+        self.humid_scale.setFont(font)
 
         self.listWidget_2.raise_()
         self.side_menu_bg.raise_()
@@ -153,6 +193,10 @@ class Ui_MainWindow(object):
         self.temp_image.raise_()
         self.weather_stat_image.raise_()
         self.settings_btn.raise_()
+        self.wind_image.raise_()
+        self.wind_scale.raise_()
+        self.humid_scale.raise_()
+        self.humid_image.raise_()
 
         MainWindow.setCentralWidget(self.centralwidget)
 
