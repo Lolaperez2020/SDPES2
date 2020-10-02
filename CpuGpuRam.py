@@ -5,8 +5,12 @@ import time
 
 
 def cpu_test():
-    val = psutil.getloadavg()
-    print(val)
+    val = psutil.cpu_percent(interval=1)
+    mem = psutil.virtual_memory()
+    mem_total = mem.total / (2 ** 30)
+    mem_used = mem.used / (2 ** 30)
+    # print(mem.used / (2 ** 30), mem.total / (2 ** 30))
+    return val, mem_used, mem_total
 
 
 def weather_test():
@@ -22,4 +26,5 @@ def weather_test():
 
 
 if __name__ == '__main__':
-    cpu_test()
+    while True:
+        print(cpu_test())
