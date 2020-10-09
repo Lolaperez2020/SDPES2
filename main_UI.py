@@ -1,22 +1,45 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-# qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(28, 28, 28, 255), stop:1 rgba(86, 86, 86, 255))
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import os
 
+
+class ButtonExecutable(QtWidgets.QPushButton):
+    def setpath(self, path):
+        self.path = path
+        self.clicked.connect(self.execute)
+
+    def execute(self):
+        try:
+            os.startfile(self.path)
+        except NameError:
+            pass
+        except FileNotFoundError:
+            pass
+
+    def set_style(self):
+        self.width, self.height = 70, 70
+        self.pos_x, self.pos_y = 100, 100
+        self.setGeometry(QtCore.QRect(self.pos_x, self.pos_y, self.width, self.height))
+        self.setStyleSheet("background-color:rgba(200, 200, 200, 1);\n"
+                           "border-radius:10px;")
+        # self.setIcon(QtGui.QIcon(icon))
+        # self.setIconSize(QtCore.QSize(40, 40))
+
+    def set_pos(self, x, y):
+        self.pos_x, self.pos_y = x, y
+        self.setGeometry(QtCore.QRect(self.pos_x, self.pos_y, self.width, self.height))
+        self.update()
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.size = 800, 600
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
-        MainWindow.setMinimumSize(QtCore.QSize(800, 600))
-        MainWindow.setMaximumSize(QtCore.QSize(800, 600))
+        MainWindow.resize(self.size[0], self.size[1])
+        MainWindow.setMinimumSize(QtCore.QSize(self.size[0], self.size[1]))
+        MainWindow.setMaximumSize(QtCore.QSize(self.size[0], self.size[1]))
         font = QtGui.QFont()
         font.setFamily("Eras Bold ITC")
         font.setPointSize(24)
@@ -30,7 +53,7 @@ class Ui_MainWindow(object):
         self.settings_btn.setIcon(QtGui.QIcon('images/settings_icon.png'))
         self.settings_btn.setIconSize(QtCore.QSize(40, 40))
         self.settings_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
-                                     "border-radius:20px;")
+                                        "border-radius:20px;")
         self.settings_btn.setText("")
         self.settings_btn.setObjectName("settings_btn")
 
@@ -39,7 +62,7 @@ class Ui_MainWindow(object):
         self.icons_btn.setIcon(QtGui.QIcon('images/exe_ico.png'))
         self.icons_btn.setIconSize(QtCore.QSize(40, 40))
         self.icons_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
-                                   "border-radius:20px;")
+                                     "border-radius:20px;")
         self.icons_btn.setText("")
         self.icons_btn.setObjectName("icons_btn")
 
@@ -48,43 +71,44 @@ class Ui_MainWindow(object):
         self.cmd_btn.setIcon(QtGui.QIcon('images/terminal_blue.png'))
         self.cmd_btn.setIconSize(QtCore.QSize(40, 40))
         self.cmd_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
-"border-radius:20px;")
+                                   "border-radius:20px;")
         self.cmd_btn.setText("")
         self.cmd_btn.setObjectName("cmd_btn")
 
         self.side_menu_bg = QtWidgets.QListWidget(self.centralwidget)
-        self.side_menu_bg.setGeometry(QtCore.QRect(0, 30, 61, 571))
+        self.side_menu_bg.setGeometry(QtCore.QRect(0, 30, 60, 570))
         self.side_menu_bg.setStyleSheet("background-color:rgb(40, 40, 40);\n"
-"border-style: solid;\n"
-"border-width:0px;")
+                                        "border-style: solid;\n"
+                                        "border-width:0px;")
         self.side_menu_bg.setObjectName("listWidget")
 
         self.exit_btn = QtWidgets.QPushButton(self.centralwidget)
         self.exit_btn.setGeometry(QtCore.QRect(770, 5, 20, 20))
         self.exit_btn.setStyleSheet("background-color: rgb(255, 100, 100);\n"
-"border-radius:10px;")
+                                    "border-radius:10px;")
         self.exit_btn.setText("")
         self.exit_btn.setObjectName("exit_btn")
 
         self.full_screen_btn = QtWidgets.QPushButton(self.centralwidget)
         self.full_screen_btn.setGeometry(QtCore.QRect(745, 5, 20, 20))
         self.full_screen_btn.setStyleSheet("background-color: rgb(255, 255, 100);\n"
-"border-radius:10px;")
+                                           "border-radius:10px;")
         self.full_screen_btn.setText("")
         self.full_screen_btn.setObjectName("full_screen_btn")
 
         self.tray_btn = QtWidgets.QPushButton(self.centralwidget)
         self.tray_btn.setGeometry(QtCore.QRect(720, 5, 20, 20))
         self.tray_btn.setStyleSheet("background-color: rgb(100, 255, 100);\n"
-"border-radius:10px;")
+                                    "border-radius:10px;")
         self.tray_btn.setText("")
         self.tray_btn.setObjectName("tray_btn")
 
         self.listWidget_2 = QtWidgets.QListWidget(self.centralwidget)
         self.listWidget_2.setGeometry(QtCore.QRect(0, 30, 801, 600))
-        self.listWidget_2.setStyleSheet("background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(28, 28, 28, 255), stop:1 rgba(86, 86, 86, 255));\n"
-"border-style: solid;\n"
-"border-width:0px;")
+        self.listWidget_2.setStyleSheet(
+            "background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(28, 28, 28, 255), stop:1 rgba(86, 86, 86, 255));\n"
+            "border-style: solid;\n"
+            "border-width:0px;")
         self.listWidget_2.setObjectName("listWidget_2")
 
         self.weather_btn = QtWidgets.QPushButton(self.centralwidget)
@@ -92,7 +116,7 @@ class Ui_MainWindow(object):
         self.weather_btn.setIcon(QtGui.QIcon('images/weather.png'))
         self.weather_btn.setIconSize(QtCore.QSize(40, 40))
         self.weather_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
-"border-radius:20px;")
+                                       "border-radius:20px;")
         self.weather_btn.setText("")
         self.weather_btn.setObjectName("cmd_btn_2")
 
@@ -101,7 +125,7 @@ class Ui_MainWindow(object):
         self.speed_btn.setIcon(QtGui.QIcon('images/speed.png'))
         self.speed_btn.setIconSize(QtCore.QSize(40, 40))
         self.speed_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
-"border-radius:20px;")
+                                     "border-radius:20px;")
         self.speed_btn.setText("")
         self.speed_btn.setObjectName("cmd_btn_3")
 
@@ -135,8 +159,8 @@ class Ui_MainWindow(object):
         self.layout_weather_bg = QtWidgets.QListWidget(self.centralwidget)
         self.layout_weather_bg.setGeometry(QtCore.QRect(61, 30, 739, 570))
         self.layout_weather_bg.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
-                                        "border-style: solid;\n"
-                                        "border-width:0px;")
+                                             "border-style: solid;\n"
+                                             "border-width:0px;")
         self.layout_weather_bg.setObjectName("listWidget")
 
         self.wind_image = QtWidgets.QLabel(self.centralwidget)
@@ -144,8 +168,8 @@ class Ui_MainWindow(object):
         self.wind_image.setText("")
         self.wind_image.setObjectName("weather_stat_image")
         self.wind_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
-                                             "border-style: solid;\n"
-                                             "border-width:0px;")
+                                      "border-style: solid;\n"
+                                      "border-width:0px;")
         px = QtGui.QPixmap('images/wind.png').scaled(75, 50)
         self.wind_image.setPixmap(px)
 
@@ -164,8 +188,8 @@ class Ui_MainWindow(object):
         self.humid_image.setText("")
         self.humid_image.setObjectName("weather_stat_image")
         self.humid_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
-                                      "border-style: solid;\n"
-                                      "border-width:0px;")
+                                       "border-style: solid;\n"
+                                       "border-width:0px;")
         px = QtGui.QPixmap('images/drop.png').scaled(50, 70)
         self.humid_image.setPixmap(px)
 
@@ -174,9 +198,9 @@ class Ui_MainWindow(object):
         self.humid_scale.setText("")
         self.humid_scale.setObjectName("weather_stat_image")
         self.humid_scale.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
-                                      "border-style: solid;\n"
-                                      "color:rgba(19, 87, 255, 1);\n"
-                                      "border-width:0px;")
+                                       "border-style: solid;\n"
+                                       "color:rgba(19, 87, 255, 1);\n"
+                                       "border-width:0px;")
         self.humid_scale.setFont(font)
 
         self.listWidget_2.raise_()

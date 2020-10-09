@@ -1,10 +1,10 @@
 import sys
 import os
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication,  QFrame
 from PyQt5 import uic
 import main_UI
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QPropertyAnimation
 import weather_module
 
 
@@ -21,8 +21,10 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
                                      self.wind_scale, self.humid_image, self.humid_scale, self.wind_image]
         self.speed_list_widgets = []
         self.launch_list_widgets = []
+        self.launch_list_btns = []
         self.settings_list_widgets = []
         self.hide_other(self.launch_list_widgets)
+        self.setup_btns()
 
         self.cmd_btn.clicked.connect(self.term)
         self.exit_btn.clicked.connect(self.kill)
@@ -31,6 +33,29 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.speed_btn.clicked.connect(self.speed_set)
         self.icons_btn.clicked.connect(self.launch_set)
         self.settings_btn.clicked.connect(self.settings_set)
+
+    def setup_btns(self):
+        x_l_e = self.size[0]
+        y_l_e = self.size[1]
+        x_l_s = 60  # 740
+        y_l_s = 30  # 570
+        temp_c = 0
+        btn_temp = None
+        listbtn = open('btns/btns_path.txt', 'r')
+        for string in listbtn:
+            btn_temp = main_UI.ButtonExecutable(self.centralwidget)
+            btn_temp.set_style()
+            btn_temp.setpath(string.split('\n')[0].split(';')[0])
+            self.launch_list_btns.append(btn_temp)
+            self.all_widget_list.append(btn_temp)
+            btn_temp.raise_()
+        listbtn.close()
+        for btnn in range(len(self.launch_list_btns)):
+            self.launch_list_btns[btnn].set_pos(80 + (90 * (btnn % ((x_l_e - x_l_s - 20) // 90))),
+                                                100 + 90 * (btnn // ((x_l_e - x_l_s) // 90)))
+
+    def launch_set(self):
+        self.hide_other(self.launch_list_btns + self.launch_list_widgets)
 
     def day_time(self, time=None):
         if time is not None:
@@ -47,8 +72,6 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
                                  + str(weather[0]) + '</span></p></body></html>')
         self.weather_stat_image.setStyleSheet("background-color:rgba(0, 0, 0, 0);")
         self.weather_stat_image.setText("")
-
-
 
         self.wind_scale.setText('<html><head/><body><span style=" font-size:36pt;">'
                                 + str(weather[2]) + 'm/s</span></p></body></html>')
@@ -89,9 +112,6 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
 
     def speed_set(self):
         self.hide_other(self.speed_list_widgets)
-
-    def launch_set(self):
-        self.hide_other(self.launch_list_widgets)
 
     def mousePressEvent(self, event):
         self.offset = event.pos()

@@ -1,10 +1,12 @@
 from pyowm import OWM
 import sys
 import psutil
+import GPUtil
 import time
 
 
 def cpu_test():
+
     val = psutil.cpu_percent(interval=1)
     mem = psutil.virtual_memory()
     mem_total = mem.total / (2 ** 30)
@@ -26,5 +28,4 @@ def weather_test():
 
 
 if __name__ == '__main__':
-    while True:
-        print(cpu_test())
+    weather_test()
