@@ -129,14 +129,23 @@ class Ui_MainWindow(object):
         self.speed_btn.setText("")
         self.speed_btn.setObjectName("cmd_btn_3")
 
+        self.ege_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.ege_btn.setGeometry(QtCore.QRect(10, 240, 41, 41))
+        self.ege_btn.setIcon(QtGui.QIcon('images/ege.png'))
+        self.ege_btn.setIconSize(QtCore.QSize(40, 40))
+        self.ege_btn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
+                                     "border-radius:20px;")
+        self.ege_btn.setText("")
+        self.ege_btn.setObjectName("ege_btn")
+
         self.temperature = QtWidgets.QLabel(self.centralwidget)
         self.temperature.setGeometry(QtCore.QRect(100, 50, 50, 51))
-        font = QtGui.QFont()
-        font.setFamily("Berlin Sans FB Demi")
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.temperature.setFont(font)
+        self.font = QtGui.QFont()
+        self.font.setFamily("Berlin Sans FB Demi")
+        self.font.setPointSize(16)
+        self.font.setBold(True)
+        self.font.setWeight(75)
+        self.temperature.setFont(self.font)
         self.temperature.setStyleSheet("background-color:rgba(0, 0, 0, 0);\n"
                                        "color:rgba(19, 87, 255, 1);\n"
                                        "border-radius:0px;")
@@ -203,6 +212,22 @@ class Ui_MainWindow(object):
                                        "border-width:0px;")
         self.humid_scale.setFont(font)
 
+        self.add_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.add_btn.setGeometry(QtCore.QRect(80, 50, 160, 30))
+        self.add_btn.setIconSize(QtCore.QSize(40, 40))
+        self.add_btn.setStyleSheet("background-color: rgb(80, 235, 80);\n"
+                                   "border-radius:15px;")
+        self.add_btn.setText("Add Button")
+        self.add_btn.setObjectName("add_btn")
+
+        self.del_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.del_btn.setGeometry(QtCore.QRect(260, 50, 160, 30))
+        self.del_btn.setIconSize(QtCore.QSize(40, 40))
+        self.del_btn.setStyleSheet("background-color: rgb(235, 80, 80);\n"
+                                   "border-radius:15px;")
+        self.del_btn.setText("Delete Button")
+        self.del_btn.setObjectName("del_btn")
+
         self.listWidget_2.raise_()
         self.side_menu_bg.raise_()
         self.exit_btn.raise_()
@@ -221,6 +246,11 @@ class Ui_MainWindow(object):
         self.wind_scale.raise_()
         self.humid_scale.raise_()
         self.humid_image.raise_()
+        self.add_btn.raise_()
+        self.del_btn.raise_()
+        self.ege_btn.raise_()
+
+        self.ege_temp()
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -230,3 +260,34 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+
+    def ege_temp(self):
+        self.rus_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.rus_btn.setGeometry(QtCore.QRect(80, 50, 130, 60))
+        self.rus_btn.setStyleSheet("background-color: rgb(80, 235, 80);\n"
+                                   "background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255,241,78,1), stop:1 rgba(52,240,255,1));\n"
+                                   "border-radius:25px;")
+        self.rus_btn.setFont(self.font)
+        self.rus_btn.setText("Russian")
+        self.rus_btn.setObjectName("https://rus-ege.sdamgia.ru/")
+        self.rus_btn.raise_()
+
+        self.physics_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.physics_btn.setGeometry(QtCore.QRect(80, 130, 130, 60))
+        self.physics_btn.setStyleSheet("background-color: rgb(80, 235, 80);\n"
+                                       "background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255,5,27,1), stop:1 rgba(52,240,255,1));\n"
+                                       "border-radius:25px;")
+        self.physics_btn.setFont(self.font)
+        self.physics_btn.setText("Physics")
+        self.physics_btn.setObjectName("https://phys-ege.sdamgia.ru/")
+        self.physics_btn.raise_()
+
+        self.math_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.math_btn.setGeometry(QtCore.QRect(80, 210, 130, 60))
+        self.math_btn.setStyleSheet("background-color: rgba(80, 235, 80, 1);\n"
+                                    "background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(47,57,186,1), stop:1 rgba(52,240,255,1));\n"
+                                    "border-radius:25px;")
+        self.math_btn.setFont(self.font)
+        self.math_btn.setText("Math")
+        self.math_btn.setObjectName("https://math-ege.sdamgia.ru/")
+        self.math_btn.raise_()

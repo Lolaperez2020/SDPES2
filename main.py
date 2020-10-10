@@ -1,11 +1,12 @@
 import sys
 import os
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication,  QFrame
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFrame
 from PyQt5 import uic
 import main_UI
 from PyQt5.QtCore import Qt, QPropertyAnimation
 import weather_module
+import webbrowser
 
 
 class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
@@ -16,13 +17,17 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         # self.setWindowFlag(Qt.WindowStaysOnTopHint) # окно находится всегда на верху
 
         self.all_widget_list = [self.temperature, self.temp_image, self.weather_stat_image, self.layout_weather_bg,
-                                self.wind_scale, self.humid_image, self.humid_scale, self.wind_image]
+                                self.wind_scale, self.humid_image, self.humid_scale, self.wind_image, self.add_btn,
+                                self.del_btn, self.rus_btn, self.math_btn, self.physics_btn]
         self.weather_list_widgets = [self.temperature, self.temp_image, self.weather_stat_image, self.layout_weather_bg,
                                      self.wind_scale, self.humid_image, self.humid_scale, self.wind_image]
         self.speed_list_widgets = []
-        self.launch_list_widgets = []
+        self.launch_list_widgets = [self.add_btn, self.del_btn]
         self.launch_list_btns = []
         self.settings_list_widgets = []
+
+        self.ege_list = [self.rus_btn, self.physics_btn, self.math_btn]
+
         self.hide_other(self.launch_list_widgets)
         self.setup_btns()
 
@@ -33,6 +38,25 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.speed_btn.clicked.connect(self.speed_set)
         self.icons_btn.clicked.connect(self.launch_set)
         self.settings_btn.clicked.connect(self.settings_set)
+        self.add_btn.clicked.connect(self.add_button)
+        self.del_btn.clicked.connect(self.del_button)
+        self.ege_btn.clicked.connect(self.ege_set)
+
+        self.physics_btn.clicked.connect(self.links)
+        self.math_btn.clicked.connect(self.links)
+        self.rus_btn.clicked.connect(self.links)
+
+    def links(self):
+        webbrowser.open(self.sender().objectName())
+
+    def ege_set(self):
+        self.hide_other(self.ege_list)
+
+    def add_button(self):
+        pass
+
+    def del_button(self):
+        pass
 
     def setup_btns(self):
         x_l_e = self.size[0]
