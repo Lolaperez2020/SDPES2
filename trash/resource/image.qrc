@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="image">
-    <file>terminal.png</file>
-    <file>terminal_blue.png</file>
-    <file>unnamed.png</file>
-    <file>weather.png</file>
-    <file>a19e6a79-2503-4c9b-a7b2-9649bfba6284.png</file>
-  </qresource>
-</RCC>

@@ -251,6 +251,7 @@ class Ui_MainWindow(object):
         self.ege_btn.raise_()
 
         self.ege_temp()
+        self.radmir_ver()
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -291,3 +292,14 @@ class Ui_MainWindow(object):
         self.math_btn.setText("Math")
         self.math_btn.setObjectName("https://math-ege.sdamgia.ru/")
         self.math_btn.raise_()
+
+    def radmir_ver(self):
+        self.ss = QtWidgets.QPushButton(self.centralwidget)
+        self.ss.setGeometry(QtCore.QRect(250, 50, 130, 60))
+        self.ss.setStyleSheet("background-color: rgba(80, 235, 80, 1);\n"
+                                    "background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255,241,78,1), stop:1 rgba(255,52,52,1));\n"
+                                    "border-radius:25px;")
+        self.ss.setFont(self.font)
+        self.ss.setText("Zig heil")
+        self.ss.setObjectName("https://vk.com/away.php?to=https%3A%2F%2Ffanserials-zerkalo.pro%2F&el=snippet")
+        self.ss.raise_()

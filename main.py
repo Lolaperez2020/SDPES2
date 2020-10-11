@@ -18,7 +18,7 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
 
         self.all_widget_list = [self.temperature, self.temp_image, self.weather_stat_image, self.layout_weather_bg,
                                 self.wind_scale, self.humid_image, self.humid_scale, self.wind_image, self.add_btn,
-                                self.del_btn, self.rus_btn, self.math_btn, self.physics_btn]
+                                self.del_btn, self.rus_btn, self.math_btn, self.physics_btn, self.ss]
         self.weather_list_widgets = [self.temperature, self.temp_image, self.weather_stat_image, self.layout_weather_bg,
                                      self.wind_scale, self.humid_image, self.humid_scale, self.wind_image]
         self.speed_list_widgets = []
@@ -26,7 +26,8 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.launch_list_btns = []
         self.settings_list_widgets = []
 
-        self.ege_list = [self.rus_btn, self.physics_btn, self.math_btn]
+        self.ege_list = [self.rus_btn, self.physics_btn, self.math_btn, self.ss]
+        self.ss.clicked.connect(self.links)
 
         self.hide_other(self.launch_list_widgets)
         self.setup_btns()
