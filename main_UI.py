@@ -6,6 +6,17 @@ import os
 
 
 class ButtonExecutable(QtWidgets.QPushButton):
+    def delete_btn_wid(self):
+        self.delbtn = QtWidgets.QPushButton(self.centralwidget)
+        self.delbtn.setGeometry(QtCore.QRect(10, 550, 41, 41))
+        self.delbtn.setIcon(QtGui.QIcon('images/settings_icon.png'))
+        self.delbtn.setIconSize(QtCore.QSize(40, 40))
+        self.delbtn.setStyleSheet("background-color: rgb(40, 40, 40);\n"
+                                        "border-radius:20px;")
+
+    def set_icpn_wid(self):
+        pass
+
     def setpath(self, path):
         self.path = path
         self.clicked.connect(self.execute)
@@ -225,7 +236,7 @@ class Ui_MainWindow(object):
         self.del_btn.setIconSize(QtCore.QSize(40, 40))
         self.del_btn.setStyleSheet("background-color: rgb(235, 80, 80);\n"
                                    "border-radius:15px;")
-        self.del_btn.setText("Delete Button")
+        self.del_btn.setText("Edit Buttons")
         self.del_btn.setObjectName("del_btn")
 
         self.listWidget_2.raise_()

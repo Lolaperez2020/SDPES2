@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFrame
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFrame, QFileDialog
 from PyQt5 import uic
 import main_UI
 from PyQt5.QtCore import Qt, QPropertyAnimation
@@ -29,8 +29,8 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.ege_list = [self.rus_btn, self.physics_btn, self.math_btn, self.ss]
         self.ss.clicked.connect(self.links)
 
-        self.hide_other(self.launch_list_widgets)
         self.setup_btns()
+        self.hide_other(self.launch_list_widgets + self.launch_list_btns)
 
         self.cmd_btn.clicked.connect(self.term)
         self.exit_btn.clicked.connect(self.kill)
@@ -40,7 +40,7 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.icons_btn.clicked.connect(self.launch_set)
         self.settings_btn.clicked.connect(self.settings_set)
         self.add_btn.clicked.connect(self.add_button)
-        self.del_btn.clicked.connect(self.del_button)
+        self.del_btn.clicked.connect(self.edit_button)
         self.ege_btn.clicked.connect(self.ege_set)
 
         self.physics_btn.clicked.connect(self.links)
@@ -54,12 +54,18 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         self.hide_other(self.ege_list)
 
     def add_button(self):
-        pass
+        directory, _ = QFileDialog.getOpenFileName(self, "Выберите фото")
+        text_btns = open('btns/btns_path.txt', 'a')
+        text_btns.write(directory + '\n')
+        text_btns.close()
+        self.setup_btns()
+        self.hide_other(self.launch_list_widgets + self.launch_list_btns)
 
-    def del_button(self):
+    def edit_button(self):
         pass
 
     def setup_btns(self):
+        self.launch_list_btns = []
         x_l_e = self.size[0]
         y_l_e = self.size[1]
         x_l_s = 60  # 740
@@ -78,6 +84,7 @@ class MainWindow(QMainWindow, main_UI.Ui_MainWindow):
         for btnn in range(len(self.launch_list_btns)):
             self.launch_list_btns[btnn].set_pos(80 + (90 * (btnn % ((x_l_e - x_l_s - 20) // 90))),
                                                 100 + 90 * (btnn // ((x_l_e - x_l_s) // 90)))
+            print(self.launch_list_btns[btnn].pos())
 
     def launch_set(self):
         self.hide_other(self.launch_list_btns + self.launch_list_widgets)
